@@ -14,7 +14,7 @@ const SearchBar: React.FC = () => {
     }, [text]);
 
     return (
-        <div className="w-full relative">
+        <div className="w-full max-w-[70%] relative">
             <input
                 className="w-full border border-gray-500 rounded-[32px] flex items-center p-2 px-10"
                 placeholder="Search"
