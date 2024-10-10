@@ -14,14 +14,14 @@ const SearchBar: React.FC = () => {
     }, [text]);
 
     return (
-        <div className="w-full max-w-[70%] relative">
+        <div className="w-full md:max-w-[70%] relative">
             <input
-                className="w-full border border-gray-400 rounded-[32px] flex items-center p-2 px-10 peer"
+                className="w-full border border-gray-400 rounded-[32px] flex items-center p-2 px-8 md:px-10 peer text-sm md:text-base"
                 placeholder="Search"
                 value={text}
                 onChange={e => setText(e.target.value)}
             />
-            <MagnifyingGlassIcon className="size-6 text-gray-400 absolute left-2 top-2 peer-focus:text-black" />
+            <MagnifyingGlassIcon className="size-5 md:size-6 text-gray-400 absolute left-2 top-[9px] md:top-2 peer-focus:text-black" />
             {text && <XMarkIcon className="cursor-pointer size-6 absolute right-2 top-2 text-gray-400 peer-focus:text-black" onClick={() => setText("")} />}
         </div>
     );

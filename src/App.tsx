@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="w-full flex justify-center bg-white">
       <TodoListContext.Provider value={{ searchText, setSearchText, filter, setFilter }}>
-        <div className="mt-10 w-4/5 flex flex-col items-center gap-14">
-          <div className="w-full flex justify-between items-center gap-10">
+        <div className="mt-10 w-full px-4 md:px-0 md:w-4/5 flex flex-col items-center gap-7 md:gap-14">
+          <div className="w-full flex flex-col md:flex-row justify-between md:items-center gap-5 md:gap-10">
             <div className="font-bold text-3xl">Today</div>
             <SearchBar />
             <Filters />

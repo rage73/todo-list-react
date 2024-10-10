@@ -86,21 +86,24 @@ const TaskList: React.FC = () => {
                     {getTasks().map((task, i) => (
                         <div
                             key={task.value + i}
-                            className="flex items-center justify-between border p-3 rounded-xl"
+                            className="w-full flex items-center justify-between border p-2 md:p-3 rounded-xl"
                             style={task.status === taskStatus.complete ? { backgroundColor: "#dcfce7", borderColor: "#16a34a" } : { backgroundColor: "#f1f5f9", borderColor: "#d1d5db" }}
                         >
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 overflow-auto">
                                 {task.status === taskStatus.complete
-                                    ? <CheckCircleIcon className="size-7 text-green-600 cursor-pointer" onClick={() => toggleStatus(task.id)} />
-                                    : <div className="size-[21px] m-[3.5px] bg-white border border-gray-400 rounded-full cursor-pointer" onClick={() => toggleStatus(task.id)} />
+                                    ? <CheckCircleIcon className="size-7 text-green-600 cursor-pointer shrink-0" onClick={() => toggleStatus(task.id)} />
+                                    : <div className="size-[21px] m-[3.5px] bg-white border border-gray-400 rounded-full cursor-pointer shrink-0" onClick={() => toggleStatus(task.id)} />
                                 }
-                                <div style={!task.deleted ? { textDecoration: "none" } : { textDecoration: "line-through" }}>
+                                <div
+                                    className="overflow-auto"
+                                    style={!task.deleted ? { textDecoration: "none" } : { textDecoration: "line-through" }}
+                                >
                                     {task.value}
                                 </div>
                             </div>
                             {!task.deleted
-                                ? <XMarkIcon className="size-5 text-gray-400 cursor-pointer" onClick={() => removeTask(task.id)} />
-                                : <ArrowUturnLeftIcon className="size-5 text-gray-400 cursor-pointer" onClick={() => undoDelete(task.id)} />
+                                ? <XMarkIcon className="size-5 text-gray-400 cursor-pointer shrink-0" onClick={() => removeTask(task.id)} />
+                                : <ArrowUturnLeftIcon className="size-5 text-gray-400 cursor-pointer shrink-0" onClick={() => undoDelete(task.id)} />
                             }
                         </div>
                     ))}

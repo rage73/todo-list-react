@@ -29,7 +29,7 @@ const Filters: React.FC = () => {
             {filterValues.map((f) => (
                 <div
                     key={f.value}
-                    className="cursor-pointer text-white text-lg py-1 px-2 rounded-md"
+                    className="cursor-pointer text-white text-sm md:text-base py-1 px-2 rounded-md"
                     onClick={() => setFilter(f.value)}
                     style={{ backgroundColor: `${f.value === filter ? "#16a34a" : "#6b7280"}` }}
                 >
