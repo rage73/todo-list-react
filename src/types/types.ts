@@ -1,8 +1,10 @@
 import { taskStatus, filterAll } from "../constants";
 
-export interface Task {
+export interface taskType {
+    id: number;
     value: string;
     status: taskStatus;
+    deleted?: boolean;
 };
 
 export type filterType = taskStatus | typeof filterAll;

@@ -1,7 +1,6 @@
 export const enum taskStatus {
     incomplete,
-    complete,
-    deleted
+    complete
 };
 
 export const filterAll = 3;
