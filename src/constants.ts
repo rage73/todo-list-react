@@ -4,3 +4,5 @@ export const enum taskStatus {
 };
 
 export const filterAll = 3;
+
+export const TASK_DATA = "taskData";

@@ -1,14 +1,19 @@
-import { MutableRefObject, useContext, useRef, useState } from "react";
+import { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
 import { taskType } from "../types/types";
 import { TodoListContext } from "../contexts/todoListContext";
-import { filterAll, taskStatus } from "../constants";
+import { filterAll, TASK_DATA, taskStatus } from "../constants";
 import { ArchiveBoxXMarkIcon, ArrowUturnLeftIcon, CheckCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const TaskList: React.FC = () => {
     const { filter, searchText } = useContext(TodoListContext);
 
-    const [tasks, setTasks] = useState<taskType[]>([]);
+    const [tasks, setTasks] = useState<taskType[]>(JSON.parse(localStorage.getItem(TASK_DATA) ?? "[]") as taskType[]);
     const [newTask, setNewTask] = useState<taskType["value"]>("");
+
+    useEffect(() => {
+        if (Array.isArray(tasks))
+            localStorage.setItem(TASK_DATA, JSON.stringify(tasks));
+    }, [tasks]);
 
     const getTasks = () => {
         const filteredTasks = filter === filterAll ? tasks : tasks.filter((task) => task.status === filter);
@@ -26,7 +31,7 @@ const TaskList: React.FC = () => {
         }));
     }
 
-    const deleteDelayId: MutableRefObject<{ [idx: number]: number | null }> = useRef({});
+    const deleteDelayId: MutableRefObject<{ [id: number]: number | null }> = useRef({});
 
     const removeTask = (id: number) => {
         const idx = tasks.findIndex(t => t.id === id);
@@ -74,7 +79,7 @@ const TaskList: React.FC = () => {
         <div className="w-full flex flex-col gap-2 items-stretch">
             {(searchText !== "" || filter === taskStatus.complete || filter === taskStatus.incomplete) && getTasks().length < 1
                 ? <div className="flex flex-col items-center justify-center p-14">
-                    <ArchiveBoxXMarkIcon className="size-10"/>
+                    <ArchiveBoxXMarkIcon className="size-10" />
                     <div>No Tasks Found</div>
                 </div>
                 : <div className="w-full flex flex-col gap-2 items-stretch">
